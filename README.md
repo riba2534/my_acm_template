@@ -4,7 +4,7 @@
 
 欢迎fork.
 
-git地址为:`https://git.gitbook.com/riba2534/riba2534_acm_template.git`
+gitbook地址为:`https://git.gitbook.com/riba2534/riba2534_acm_template.git`
 
 github仓库地址:`https://github.com/riba2534/my_acm_template.git`
 
