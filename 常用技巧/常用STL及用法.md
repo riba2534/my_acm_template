@@ -246,3 +246,75 @@ pair<int, double> p1(1, 1.2);
 pair<int, double> p2 = p1;  
 ```
 
+
+
+## 全排列函数next_permutation
+生成1-8的全排列
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int num[8]= {1,2,3,4,5,6,7,8};
+    do
+    {
+        for(int i=0; i<7; i++)
+            printf("%d ",num[i]);
+        printf("%d",num[7]);
+        puts("");
+    }
+    while(next_permutation(num,num+8));
+    return 0;
+}
+```
+
+## 集合运算,求交集和并集
+
+STL中有一个函数是：`set_difference（）`，作用是求两个集合的差。
+
+set_difference()算法计算两个集合[start1, end1)和[start2, end2)的差集, 并将差集存放到result. 
+两个集合以序列的形式给出, 且必须先按升序排好位置. 
+set_difference()是一个指向result序列末尾的迭代器. 
+如果严格弱排序的比较函数对象cmp未指定, set_difference()将使用<操作符比较元素.
+
+具体用法请看C++官网介绍：[std::set_difference](http://www.cplusplus.com/reference/algorithm/set_difference/)
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+int a[110],b[110];
+int main()
+{
+    int n,m;
+    while(~scanf("%d%d",&n,&m)&&(m||n))
+    {
+        for(int i=0; i<n; i++)scanf("%d",&a[i]);
+        for(int i=0; i<m; i++)scanf("%d",&b[i]);
+        sort(a,a+n);
+        sort(b,b+m);
+        vector<int>v(110);
+        vector<int>::iterator it;
+        it=set_difference(a,a+n,b,b+m,v.begin());
+        v.resize(it-v.begin());
+        if(v.size()==0)puts("NULL");
+        else
+        {
+            for(it=v.begin(); it!=v.end(); ++it)
+                cout<<*it<<" ";
+            cout<<endl;
+        }
+    }
+    return 0;
+}
+```
+
+其他函数:
+
+```cpp
+set_union():对两个有序序列进行集合并运算
+set_intersection():对两个有序序列进行集合交运算
+set_difference():对两个有序序列进行集合差运算
+set_symmetric_difference():对两个有序序列进行集合对称差运算
+```
+
