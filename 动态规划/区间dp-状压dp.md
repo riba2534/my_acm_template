@@ -151,3 +151,39 @@ int main()
 
 ```
 
+[第13届景驰-埃森哲杯广东工业大学ACM程序设计大赛 D psd面试(最长回文子序列，区间dp)](https://blog.csdn.net/riba2534/article/details/79680499)
+
+最长回文子序列:
+
+dp[i][j]表示区间`i~j`的最长回文子序列长度，那么对于一个区间`[j,j+i]`，如果第`j`个元素和第`j+i`个元素相等，那么它的答案就等于`dp[j+1][j+i-1]`的值+2，否则，就在`dp[j+1][j+i]`和`dp[j][j+i-1]`中取一个最大值
+
+这个题只需要都转换成小写就行了
+
+```cpp
+const int N=1234+7;
+int f[N][N];
+int main()
+{
+    string s;
+    while (cin>>s)
+    {
+        mem(f,0);
+        int len=s.length();
+        for(int i=0; i<len; i++)f[i][i]=1;
+        for(int k=1; k<len; k++)
+        {
+            for(int i=0; i+k<len; i++)
+            {
+                int j=i+k;
+                if(tolower(s[i])==tolower(s[j]))
+                    f[i][j]=max(f[i][j],f[i+1][j-1]+2);
+                else
+                    f[i][j]=max(f[i+1][j],f[i][j-1]);
+            }
+        }
+        printf("%d\n",len-f[0][len-1]);
+    }
+    return 0;
+}
+```
+
