@@ -7,20 +7,6 @@
 邻接表写法：
 
 ```cpp
-#include <cstdio>
-#include <cstring>
-#include <cctype>
-#include <stdlib.h>
-#include <string>
-#include <map>
-#include <iostream>
-#include <set>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
 #define mem(a,b) memset(a,b,sizeof(a))
 #define inf 0x3f3f3f3f
 typedef long long ll;
@@ -86,19 +72,99 @@ int main()
 }
 ```
 
+堆优化的迪杰斯特拉:
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define mem(a,b) memset(a,b,sizeof(a))
+#define inf 2147483647
+const int N=10000+20;
+const int M=500000+20;
+int n,m;
+int first[N],tot,dis[N],vis[N];
+struct edge
+{
+    int u,v,w,next;
+} e[M];
+void add_edge(int u,int v,int w)
+{
+    e[tot].v=v,e[tot].w=w;
+    e[tot].next=first[u];
+    first[u]=tot++;
+}
+struct node
+{
+    int id,now;
+    node() {}
+    node(int _id,int _now)
+    {
+        id=_id;
+        now=_now;
+    }
+    bool friend operator < (node a,node b)
+    {
+        return a.now>b.now;
+    }
+};
+void spfa(int st)
+{
+    for(int i=1; i<=n; i++)
+    {
+        dis[i]=inf;
+        vis[i]=0;
+    }
+    dis[st]=0;
+    priority_queue<node>q;
+    q.push(node(st,0));
+    while(!q.empty())
+    {
+        node u=q.top();
+        q.pop();
+        if(vis[u.id])continue;
+        else
+        {
+            vis[u.id]=1;
+            for(int i=first[u.id]; ~i; i=e[i].next)
+            {
+                int v=e[i].v,w=e[i].w;
+                if(dis[u.id]+w<dis[v])
+                {
+                    dis[v]=dis[u.id]+w;
+                    q.push(node(v,dis[v]));
+                }
+            }
+        }
+    }
+}
+void init()
+{
+    mem(first,-1);
+    tot=0;
+}
+int main()
+{
+    int u,v,w,st;
+    init();
+    scanf("%d%d%d",&n,&m,&st);
+    for(int i=1; i<=m; i++)
+    {
+        scanf("%d%d%d",&u,&v,&w);
+        add_edge(u,v,w);
+    }
+    spfa(st);
+    for(int i=1; i<=n; i++)
+        printf("%d ",dis[i]);
+    puts("");
+    return 0;
+}
+```
+
+
+
 邻接矩阵写法:
 
 ```cpp
-#include <stdio.h>  
-#include <string.h>  
-#include <string>  
-#include <iostream>  
-#include <stack>  
-#include <queue>  
-#include <vector>  
-#include <algorithm>  
-#define mem(a,b) memset(a,b,sizeof(a))  
-using namespace std;  
 const int inf=0x3f3f3f3f;  
 int map[1010][1010];//map[i][j]表示从i-->j的距离    
 int dis[1010];//dis[i]从v1到i的距离    
