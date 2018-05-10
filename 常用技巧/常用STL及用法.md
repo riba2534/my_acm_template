@@ -2,6 +2,20 @@
 
 以下整理一下常用的`STL`的常用用法.
 
+## 哈希容器
+
+```cpp
+//当容器不需要排序时可以通过哈希容器来获取更高的性能
+#include <unordered_map>
+#include <unordered_set>
+unordered_map<int,int>mp1;
+unordered_multimap<int,int>mp2;
+unordered_set<int>s1;
+unordered_multiset<int>s2;
+```
+
+
+
  ## STL中的二分查找算法
 
 -   binary_search：查找某个元素是否出现。

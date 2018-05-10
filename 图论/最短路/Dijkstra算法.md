@@ -107,7 +107,7 @@ struct node
         return a.now>b.now;
     }
 };
-void spfa(int st)
+void dijkstra(int st)
 {
     for(int i=1; i<=n; i++)
     {
@@ -121,8 +121,7 @@ void spfa(int st)
     {
         node u=q.top();
         q.pop();
-        if(vis[u.id])continue;
-        else
+        if(!vis[u.id])
         {
             vis[u.id]=1;
             for(int i=first[u.id]; ~i; i=e[i].next)
@@ -152,7 +151,7 @@ int main()
         scanf("%d%d%d",&u,&v,&w);
         add_edge(u,v,w);
     }
-    spfa(st);
+    dijkstra(st);
     for(int i=1; i<=n; i++)
         printf("%d ",dis[i]);
     puts("");
