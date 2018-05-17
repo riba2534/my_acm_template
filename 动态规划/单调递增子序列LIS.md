@@ -65,6 +65,67 @@ int main()
     }
     return 0;
 }
+```
 
+
+
+$$nlog(n)$$记录路径:
+
+```cpp
+const int N=5000;
+int a[N],dp[N],pos[N],pre[N],n;
+vector<int>v;
+//dp[i]表示长度为i的子序列的可取最小末尾
+//pos[i]表示长度为i的子序列的最小末尾的下标
+int get_lis()
+{
+    mem(dp,inf);
+    pos[0]=-1;
+    for(int i=0; i<n; i++)
+    {
+        int p=lower_bound(dp,dp+n,a[i])-dp;
+        dp[p]=a[i];
+        pos[p]=i;
+        pre[i]=(p?pos[p-1]:-1);
+    }
+    int ans=lower_bound(dp,dp+n,inf)-dp;
+    return ans;
+}
+void print1(int pos)
+{
+    if (pre[pos] != -1)
+    {
+        print1(pre[pos]);
+    }
+    printf("%d ", a[pos]);
+}
+void print2(int ans)
+{
+    int i;
+    for(i=pos[ans-1]; ~pre[i]; i=pre[i])
+        v.push_back(a[i]);
+    v.push_back(a[i]);
+    for(int i=v.size()-1; i>=0; i--)
+    {
+        cout<<v[i]<<" ";
+    }
+    cout<<endl;
+}
+int main()
+{
+    scanf("%d",&n);
+    for(int i=0; i<n; i++)
+        scanf("%d",&a[i]);
+    int ans=get_lis();
+    cout<<"ans="<<ans<<endl;
+    print1(pos[ans-1]);
+    puts("");
+    print2(ans);
+    return 0;
+}
+/*
+8
+1 3 5 2 4 6 5 3
+*/
 ```
 
