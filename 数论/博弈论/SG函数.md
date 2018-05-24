@@ -40,6 +40,7 @@ f[]:可以取走的石子个数
 sg[]:0~n的sg的值
 vis[]:用来求解mex{}
 ps:f数组的下标，从1开始
+也可以不使用ps,但是一定要保证循环有终止条件，见下面例题代码
 */
 int f[N], sg[N], vis[N], ps;
 void get_sg(int n)
@@ -99,15 +100,21 @@ int sg_dfs(int x)
 
 ```cpp
 //打表
+/*
+f[]:可以取走的石子个数
+sg[]:0~n的sg的值
+vis[]:用来求解mex{}
+ps:f数组的下标，从1开始
+*/
 const int N = 1e3 + 10;
-int f[N], sg[N], vis[N], ps;
+int f[N], sg[N], vis[N];
 void get_sg(int n)
 {
     mem(sg, 0);
     for (int i = 1; i <= n; i++)
     {
         mem(vis, 0);
-        for (int j = 1; f[j] <= i && j <= ps; j++)
+        for (int j = 1; f[j] <= i; j++)
             vis[sg[i - f[j]]] = 1;
         for (int j = 0;; j++)
             if (!vis[j])
@@ -119,17 +126,17 @@ void get_sg(int n)
 }
 void init()
 {
-    int ans = 1;
-    ps = 0;
-    for (int i = 1; i <= 10; i++)
+    int ans = 1, len = 0;
+    for (int i = 1; i <= 11; i++)
     {
-        f[++ps] = ans;
+        f[++len] = ans;
         ans *= 2;
     }
     get_sg(1000);
 }
 int main()
 {
+    //freopen("in.txt", "r", stdin);
     init();
     int x;
     while (~scanf("%d", &x))

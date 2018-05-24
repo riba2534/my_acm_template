@@ -1,5 +1,62 @@
 # 最长公共子序列LCS
 
+nlogn做法:
+
+思路是这样的，首先假设有两个串，为`a`和`b`，比如:
+
+| a    | 1    | 2    | 3    | 5    | 4    |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| b    | 5    | 4    | 3    | 2    | 1    |
+| 下标 | 1    | 2    | 3    | 4    | 5    |
+
+我们找出`b`串中的每个数在`a`串中的下标。
+
+5出现在4位置，4出现在5位置，3,出现在3位置，2出现在2位置，1出现在1位置，那么就形成了一个新的串
+
+	4 5 3 2 1
+
+然后对新生成的串求出`LIS`长度就是答案
+
+代码:
+
+```cpp
+map<int, int> vis;
+int a[N], b[N], c[N];
+int main()
+{
+    //freopen("in.txt", "r", stdin);
+    int n, m;
+    while (~scanf("%d%d", &n, &m))
+    {
+        vis.clear();
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &a[i]);
+            vis[a[i]] = i;
+        }
+        int nn = 0, x;
+        for (int i = 0; i < m; i++)
+        {
+            scanf("%d", &x);
+            if (vis.find(x) != vis.end())
+                b[nn++] = vis[x];
+        }
+        int len = 0;
+        for (int i = 0; i < nn; i++)
+        {
+            int p = lower_bound(c, c + len, b[i]) - c;
+            c[p] = b[i];
+            if (p == len)
+                len++;
+        }
+        printf("%d\n", len);
+    }
+    return 0;
+}
+```
+
+O(n^2)做法
+
 ```cpp
 char a[2000],b[2000];  
 int dp[2000][2000];//dp[i][j]表示匹配到a字符串的第i个字符和b字符串的第j个字符时的最大匹配数  
