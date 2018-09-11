@@ -5,22 +5,6 @@
 讲解可以看这个文章:[最近公共祖先（LCA）算法实现过程 【Tarjan离线+倍增在线+RMQ】](http://blog.csdn.net/my_sunshine26/article/details/72717112)，下面是我的模板:
 
 ```cpp
-#include <cstdio>
-#include <cstring>
-#include <cctype>
-#include <stdlib.h>
-#include <string>
-#include <map>
-#include <iostream>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
-typedef long long ll;
-#define inf 1000000
-#define mem(a,b) memset(a,b,sizeof(a))
 const int N=500000+7;
 int pre[N],first[N],first2[N],tot,tot2;
 bool vis[N];//标记有没有询问

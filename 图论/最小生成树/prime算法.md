@@ -81,26 +81,11 @@ prim的思想还是没有改变，还是从任意一个点开始选择，找出�
 [P3366 【模板】最小生成树](https://www.luogu.org/problemnew/show/P3366)
 
 ```cpp
-#include <cstdio>
-#include <cstring>
-#include <cctype>
-#include <stdlib.h>
-#include <string>
-#include <map>
-#include <iostream>
-#include <set>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
 #define mem(a,b) memset(a,b,sizeof(a))
 typedef long long ll;
 typedef pair<int,int> pir;
 const int N=5000+10;
 const int M=200000+10;
-
 int first[N],tot;
 int vis[N],dis[N],n,m;
 priority_queue <pir,vector<pir>,greater<pir> >q;
@@ -108,7 +93,6 @@ struct edge
 {
     int v,w,next;
 } e[M*2];
-
 void add_edge(int u,int v,int w)
 {
     e[tot].v=v;

@@ -14,22 +14,6 @@
 可以AC:[ P3376 【模板】网络最大流](https://www.luogu.org/problemnew/show/P3376)
 
 ```cpp
-#include <cstdio>
-#include <cstring>
-#include <cctype>
-#include <stdlib.h>
-#include <string>
-#include <map>
-#include <iostream>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
-typedef long long ll;
-#define inf 0x3f3f3f3f
-#define mem(a,b) memset(a,b,sizeof(a))
 const int N=10000+20;
 const int M=100000+20;
 int top;

@@ -85,13 +85,6 @@ int main()
 这是一个八数码问题，关于这道题的题意，可以参考`Virtual Judge`上面的翻译，我们的思路是从初始状态开始搜索，然后搜索完所有的状态，每次搜索的时候记录路径，并且采用**康托展开**进行判重，因为我们已经预处理好了所有的状态。所以最后应对O(1)的查询就好了
 
 ```cpp
-#include <stdio.h>
-#include <algorithm>
-#include <algorithm>
-#include <string.h>
-#include <string>
-#include <iostream>
-#include <queue>
 using namespace std;
 #define mem(a,b) memset(a,b,sizeof(a))
 const int N=4e5+10;

@@ -5,13 +5,6 @@
 
 可以AC：[P3376 【模板】网络最大流](https://www.luogu.org/problemnew/show/3376)
 ```cpp
-#include<stdio.h>
-#include<string.h>
-#include<algorithm>
-#include<queue>
-#define INF 0x3f3f3f3f
-#define mem(a,b) memset(a,b,sizeof(a))
-using namespace std;
 const int N=10000+50;
 const int M=200000+50;
 struct node

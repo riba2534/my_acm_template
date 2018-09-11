@@ -21,22 +21,9 @@ dp[i][1]=dp[i][1]+dp[j][0]
 1. 不选当前的节点获得的最大活跃值为，它的儿子节点选择和不选择中较大的一个。
 2. 选择当前节点获得的最大活跃值为，这个节点本身的活跃值加上不选他儿子节点的活跃值(因为都不想见到上司)
 
-#代码
+### 代码
 
 ```cpp
-#include <cstdio>
-#include <cstring>
-#include <cctype>
-#include <stdlib.h>
-#include <string>
-#include <map>
-#include <iostream>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
 typedef long long ll;
 #define inf 0x3f3f3f3f
 #define mem(a,b) memset(a,b,sizeof(a))

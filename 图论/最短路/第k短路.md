@@ -1,17 +1,11 @@
-###次短路与第K短路
+### 次短路与第K短路
 次短路是除了最短路之外第二短的路，这条路的长度有可能和最短路一样长。   
 第K短路就是第K短的路，鉴于这两个算法都是特别模板的题，直接上例子
-####[HRBUST 1050 Hot Pursuit II](http://acm.hrbust.edu.cn/index.php?m=ProblemSet&a=showProblem&problem_id=1050)   
+
+#### [HRBUST 1050 Hot Pursuit II](http://acm.hrbust.edu.cn/index.php?m=ProblemSet&a=showProblem&problem_id=1050)   
 求次短路：Dijkstra的dist数组和vis数组再加一维，松弛的时候讨论当前的路小于最短路，或者大于最短路但小于次短路这两种情况，就能维护一个次短路了
 
 ```C++
-#include <cstdio>
-#include <cstring>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
-
 const int maxn = 1000 + 5;
 const int INF = 0x3f3f3f3f;
 

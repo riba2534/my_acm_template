@@ -9,20 +9,6 @@
 ### KM算法的时候一定要记得把边权先全部变成`-inf`,然后如果求最小匹配，只需要将权值取相反数，结果取相反数
 
 ```cpp
-#include <cstdio>
-#include <cstring>
-#include <cctype>
-#include <string>
-#include <set>
-#include <iostream>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-#define mem(a,b) memset(a,b,sizeof(a))
-#define inf 0x3f3f3f3f
-using namespace std;
 const int N=300+20;
 int nx,ny;//两边的点数
 int e[N][N];

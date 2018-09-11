@@ -73,16 +73,6 @@ int main()
 [HDU1426 Sudoku Killer(深搜DFS)(很坑的一道题，解数独)](https://blog.csdn.net/riba2534/article/details/53526709)
 
 ```cpp
-#include <stdio.h>  
-#include <string.h>  
-#include <iostream>  
-#include <math.h>  
-#include <stack>  
-#include <queue>  
-#include <vector>  
-#include <algorithm>  
-#define mem(a,b) memset(a,b,sizeof(a))  
-using namespace std;  
 int map[10][10];  
 int num;//记录有多少个数需要填  
 struct zb//用来存储坐标  

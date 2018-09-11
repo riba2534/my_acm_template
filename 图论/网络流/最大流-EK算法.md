@@ -11,21 +11,6 @@
 代码：
 可以AC:[POJ1273 Drainage Ditches(网络流--最大流，EK增广路算法)](http://blog.csdn.net/riba2534/article/details/78933513)
 ```cpp
-#include <cstring>
-#include <cctype>
-#include <stdlib.h>
-#include <string>
-#include <map>
-#include <iostream>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
-typedef long long ll;
-#define inf 0x3f3f3f3f
-#define mem(a,b) memset(a,b,sizeof(a))
 const int N=200+20;
 int g[N][N],f[N][N],pre[N];//分别代表残余网络，实流网络，前驱数组
 bool vis[N];//标记数组
