@@ -1,5 +1,7 @@
 # 树剖求lca
 
+理论复杂度为:$$O(2n+mlogn)$$,常数比倍增小
+
 ```cpp
 typedef long long ll;
 const int N = 5e5 + 10;

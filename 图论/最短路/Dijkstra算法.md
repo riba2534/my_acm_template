@@ -219,3 +219,140 @@ int main()
     return 0;  
 }  
 ```
+
+分层最短路:
+
+分层图最短路的模板题，此题洛谷上卡`SPFA`，所以用堆优化的`dijkstra`来做.
+
+题意就是，给出你一张无向图，你有`k`次机会使得某一条边的花费为`0`，求最小花费.
+
+我们需要利用类似动态规划的思想来进行转移。
+
+我们定义:
+
+- $dis[i][j]$：从起点`st`到`i`点，使用了`j`次优惠机会所使用的最小花费.
+- $vis[i][j]$：从起点`st`到`i`点，使用了`j`次优惠机会这个状态有没有被标记
+
+我们需要对普通的迪杰斯特拉转移的时候进行一些改变：
+
+1. 不使用免费机会的时候：
+
+   ```cpp
+   如果 到点u的花费dis[u][k]+从u到v的边权w<到v的边权dis[v][k]
+   	正常转移更新:dis[v][k]=dis[u][k]+w
+   	加入堆q.push(node(v,k,dis[v][k]))
+   ```
+
+2. 使用免费机会的时候:
+
+   ```cpp
+   如果 到点u的时候使用了k次机会的花费dis[u][k]<到v点的时候使用了k+1次机会的边权dis[v][k+1]
+   	这条边免费更新dis[v][k+1]=dis[u][k]
+   	加入堆q.push(node(v,k+1,dis[v+1][k]))
+   ```
+
+剩下的就是迪杰斯特拉的堆优化模板了。
+
+[BZOJ2763飞行路线(分层最短路，dijkstra的堆优化)](https://blog.csdn.net/riba2534/article/details/82353768)
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define mem(a, b) memset(a, b, sizeof(a))
+const int N = 1e5 + 10;
+const int inf = 0x3f3f3f3f;
+int n, m, k;
+int first[N], tot;
+
+struct edge
+{
+    int v, w, next;
+} e[N * 2];
+void add_edge(int u, int v, int w)
+{
+    e[tot].v = v, e[tot].w = w;
+    e[tot].next = first[u];
+    first[u] = tot++;
+}
+struct node
+{
+    int id, now, k;
+    node() {}
+    node(int _id, int _k, int _now)
+    {
+        id = _id, now = _now, k = _k;
+    }
+    bool friend operator<(node a, node b)
+    {
+        return a.now > b.now;
+    }
+};
+/*
+dis[i][j]:表示从st到i点用了j次免费机会的最小花费
+vis[i][j]:表示从st到i点用了j次免费机会有没有被标记过
+*/
+int dis[N][12], vis[N][12];
+void dijkstra(int st)
+{
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 0; j <= k; j++)
+        {
+            dis[i][j] = inf;
+            vis[i][j] = 0;
+        }
+    }
+    dis[st][0] = 0;
+    priority_queue<node> q;
+    q.push(node(st, 0, 0));
+    while (!q.empty())
+    {
+        node u = q.top();
+        q.pop();
+        if (!vis[u.id][u.k])
+        {
+            vis[u.id][u.k] = 1;
+            for (int i = first[u.id]; ~i; i = e[i].next)
+            {
+                int v = e[i].v, w = e[i].w;
+                if (!vis[v][u.k] && dis[u.id][u.k] + w < dis[v][u.k])
+                {
+                    dis[v][u.k] = dis[u.id][u.k] + w;
+                    q.push(node(v, u.k, dis[v][u.k]));
+                }
+                if (u.k < k && !vis[v][u.k + 1] && dis[u.id][u.k] < dis[v][u.k + 1])
+                {
+                    dis[v][u.k + 1] = dis[u.id][u.k];
+                    q.push(node(v, u.k + 1, dis[v][u.k + 1]));
+                }
+            }
+        }
+    }
+}
+void init()
+{
+    mem(first, -1);
+    tot = 0;
+}
+int main()
+{
+    //freopen("in.txt", "r", stdin);
+    int u, v, w, st, ed;
+    scanf("%d%d%d%d%d", &n, &m, &k, &st, &ed);
+    st++, ed++;
+    init();
+    for (int i = 1; i <= m; i++)
+    {
+        scanf("%d%d%d", &u, &v, &w);
+        u++, v++;
+        add_edge(u, v, w);
+        add_edge(v, u, w);
+    }
+    dijkstra(st);
+    int ans = inf;
+    for (int i = 0; i <= k; i++)
+        ans = min(ans, dis[ed][i]);
+    printf("%d\n", ans);
+    return 0;
+}
+```
