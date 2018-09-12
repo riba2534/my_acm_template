@@ -16,7 +16,7 @@ using namespace __gnu_pbds;
 
 ```cpp
 cc_hash_table<string,int>mp1;//拉链法
-gp_hash_table<string,int>mp2;//查探法
+gp_hash_table<string,int>mp2;//查探法(快一些)
 ```
 
 说明：
