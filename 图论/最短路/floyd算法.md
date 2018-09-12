@@ -7,24 +7,6 @@
 [最短路径·二：Floyd算法](https://hihocoder.com/problemset/problem/1089)
 
 ```cpp
-#include <cstdio>
-#include <cstring>
-#include <cctype>
-#include <stdlib.h>
-#include <string>
-#include <map>
-#include <iostream>
-#include <set>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
-#define mem(a,b) memset(a,b,sizeof(a))
-#define inf 0x3f3f3f3f
-typedef long long ll;
-typedef pair<int,int> pir;
 const int N=1e2+10;
 const int M=1e6+10;
 int n,m;

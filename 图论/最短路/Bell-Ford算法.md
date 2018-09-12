@@ -33,23 +33,6 @@ if(dis[v[i]]>dis[u[i]]+w[i])
 用了我自己封装的SPFA类
 
 ```cpp
-#include <cstdio>
-#include <cstring>
-#include <cctype>
-#include <stdlib.h>
-#include <string>
-#include <map>
-#include <iostream>
-#include <set>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
-#define mem(a,b) memset(a,b,sizeof(a))
-#define inf 0x3f3f3f3f
-typedef long long ll;
 const int N=1e5+10;
 const int M=1e6+10;
 int n,m;

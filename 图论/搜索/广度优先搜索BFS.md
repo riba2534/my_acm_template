@@ -4,12 +4,6 @@
 
 ```cpp
 //注意 Y代表起点，T代表终点。B、E可以走，S、R不可以走，B的时间花费为2，E为1.  
-#include <stdio.h>  
-#include <queue>  
-#include <string.h>  
-#include <algorithm>  
-#define mem(a,b) memset(a,b,sizeof(a))  
-using namespace std;  
 int go[4][2]= {{1,0},{-1,0},{0,1},{0,-1}};  
 int m,n;  
 char map[301][301];  
