@@ -26,6 +26,38 @@ print(a)
 在Java中有两个类BigInteger和BigDecimal分别表示大整数类和大浮点数类，至于两个类的对象能表示最大范围不清楚，理论上能够表示无线大的数，只要计算机内存足够大。 
 这两个类都在`java.math.*`包中，因此每次必须在开头处引用该包。
 
+java大数开根号:
+
+```java
+public static BigInteger getSqrt(String s) {
+    BigInteger remain = BigInteger.ZERO;
+    BigInteger odd = BigInteger.ZERO;
+    BigInteger ans = BigInteger.ZERO;
+    int group = 0, k = 0;
+    if (s.length() % 2 == 1) {
+        group = s.charAt(0) - '0';
+        k = -1;
+    } else {
+        group = (s.charAt(0) - '0') * 10 + s.charAt(1) - '0';
+        k = 0;
+    }
+    for (int j = 0; j < (s.length() + 1) / 2; j++) {
+        if (j != 0)
+            group = (s.charAt(j * 2 + k) - '0') * 10 + s.charAt(j * 2 + k + 1) - '0';
+        odd = BigInteger.valueOf(20).multiply(ans).add(BigInteger.ONE);
+        remain = BigInteger.valueOf(100).multiply(remain).add(BigInteger.valueOf(group));
+        int count = 0;
+        while (remain.compareTo(odd) >= 0) {
+            count++;
+            remain = remain.subtract(odd);
+            odd = odd.add(BigInteger.valueOf(2));
+        }
+        ans = ans.multiply(BigInteger.TEN).add(BigInteger.valueOf(count));
+    }
+    return ans;
+}
+```
+
 Ⅰ基本函数： 
 1. `valueOf(parament);` 将参数转换为制定的类型 
 2. `add();` 大整数相加 
@@ -54,3 +86,4 @@ BigInteger(String val,int radix);
 A=BigInteger.ONE 1 
 B=BigInteger.TEN 10 
 C=BigInteger.ZERO 0 
+
