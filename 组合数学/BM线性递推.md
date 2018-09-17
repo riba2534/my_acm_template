@@ -4,6 +4,8 @@
 
 [HDU6172 Array Challenge(BM线性递推)](https://blog.csdn.net/riba2534/article/details/82730967)
 
+只有模质数时有效。
+
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
