@@ -16,16 +16,13 @@ struct Node {
         return c > rhs.c;
     }
 };
-
 struct Edge {
     int v, cost;
     Edge (int _v = 0, int _cost = 0) : v(_v), cost(_cost) {}
 };
-
 vector<Edge>E[maxn];
 bool vis[maxn][2];
 int dist[maxn][2];
-
 void Dijkstra(int n, int s) {
     memset(vis, false, sizeof(vis));
     for (int i = 1; i <= n; i++) {
@@ -56,11 +53,9 @@ void Dijkstra(int n, int s) {
         }
     }
 }
-
 void addedge(int u, int v, int w) {
     E[u].push_back(Edge(v, w));
 }
-
 int main() {
     //freopen("in.txt", "r", stdin);
     int n, m, v, w;
@@ -89,14 +84,11 @@ int main() {
 #include <vector>
 #include <algorithm>
 using namespace std;
-
 const int maxn = 1000 + 5;
 const int INF = 0x3f3f3f3f;
 int s, t, k;
-
 bool vis[maxn];
 int dist[maxn];
-
 struct Node {
     int v, c;
     Node (int _v = 0, int _c = 0) : v(_v), c(_c) {}
@@ -104,14 +96,11 @@ struct Node {
         return c + dist[v] > rhs.c + dist[rhs.v];
     }
 };
-
 struct Edge {
     int v, cost;
     Edge (int _v = 0, int _cost = 0) : v(_v), cost(_cost) {}
 };
-
 vector<Edge>E[maxn], revE[maxn];
-
 void Dijkstra(int n, int s) {
     memset(vis, false, sizeof(vis));
     for (int i = 1; i <= n; i++) dist[i] = INF;
@@ -133,7 +122,6 @@ void Dijkstra(int n, int s) {
         }
     }
 }
-
 int astar(int s) {
     priority_queue<Node> que;
     que.push(Node(s, 0)); k--;
@@ -152,12 +140,10 @@ int astar(int s) {
     }
     return -1;
 }
-
 void addedge(int u, int v, int w) {
     revE[u].push_back(Edge(v, w));
     E[v].push_back(Edge(u, w));
 }
-
 int main() {
     //freopen("in.txt", "r", stdin);
     int n, m, u, v, w;

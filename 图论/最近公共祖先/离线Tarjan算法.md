@@ -17,14 +17,12 @@ struct Query
 {
     int v,w,next;
 } query[2*N];
-
 void add_edge(int u,int v)
 {
     e[tot].v=v;
     e[tot].next=first[u];
     first[u]=tot++;
 }
-
 void add_query(int u,int v)
 {
     query[tot2].v=v;
@@ -32,12 +30,10 @@ void add_query(int u,int v)
     query[tot2].next=first2[u];
     first2[u]=tot2++;
 }
-
 int find(int x)
 {
     return x==pre[x]?x:pre[x]=find(pre[x]);
 }
-
 int lca(int u,int fa)
 {
     for(int i=first[u]; ~i; i=e[i].next)
@@ -55,7 +51,6 @@ int lca(int u,int fa)
             query[i].w=find(v);
     }
 }
-
 void init()
 {
     mem(first,-1);
@@ -66,7 +61,6 @@ void init()
     for(int i=1; i<=n; i++)
         pre[i]=i;
 }
-
 int main()
 {
     int m,s,u,v;
@@ -102,18 +96,6 @@ int main()
 dis[i]+dis[j]-2*dis[他们的公共祖先]，就是要求的距离了
 
 ```cpp
-#include <cstdio>  
-#include <cstring>  
-#include <cctype>  
-#include <stdlib.h>  
-#include <string>  
-#include <map>  
-#include <iostream>  
-#include <stack>  
-#include <cmath>  
-#include <queue>  
-#include <vector>  
-#include <algorithm>  
 using namespace std;  
 typedef long long ll;  
 #define inf 1000000  
@@ -134,7 +116,6 @@ struct Query
 {  
     int v,next,id;  
 } query[M];  
-  
 void add_edge(int u,int v,int w)  
 {  
     e[tot].v=v;  
@@ -142,7 +123,6 @@ void add_edge(int u,int v,int w)
     e[tot].next=first[u];  
     first[u]=tot++;  
 }  
-  
 void add_query(int u,int v,int id)  
 {  
     query[tot2].id=id;  
@@ -150,12 +130,10 @@ void add_query(int u,int v,int id)
     query[tot2].next=first2[u];  
     first2[u]=tot2++;  
 }  
-  
 int find(int x)  
 {  
     return x==pre[x]?x:pre[x]=find(pre[x]);  
 }  
-  
 void lca(int u,int fa)  
 {  
     for(int i=first[u]; ~i; i=e[i].next)  
@@ -176,7 +154,6 @@ void lca(int u,int fa)
         }  
     }  
 }  
-  
 void dfs(int u,int len)  
 {  
     vis2[u]=1;  

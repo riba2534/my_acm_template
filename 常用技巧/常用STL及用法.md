@@ -14,8 +14,6 @@ unordered_set<int>s1;
 unordered_multiset<int>s2;
 ```
 
-
-
  ## STL中的二分查找算法
 
 -   binary_search：查找某个元素是否出现。
@@ -182,8 +180,6 @@ upper_bound() 返回大于某个值元素的迭代器
 value_comp() 返回一个用于比较元素间的值的函数  
 ```
 
-
-
 ## 优先队列
 
 >   普通的队列是一种先进先出的数据结构，元素在队列尾追加，而从队列头删除。在优先队列中，元素被赋予优先级。当访问元素时，具有最高优先级的元素最先删除。优先队列具有最高级先出 （first in, largest out）的行为特征。
@@ -208,8 +204,6 @@ struct point{
     }      
 };   
 ```
-
-
 
 ## Vector容器
 
@@ -249,8 +243,6 @@ c.end()             返回指向容器最后一个元素的迭代器
 
 ```
 
-
-
 ## Pair容器
 
 类模板：`template <class T1, class T2> struct pair`
@@ -279,8 +271,6 @@ p1 = make_pair(1, 1.2);
 pair<int, double> p1(1, 1.2);  
 pair<int, double> p2 = p1;  
 ```
-
-
 
 ## 全排列函数next_permutation
 生成1-8的全排列

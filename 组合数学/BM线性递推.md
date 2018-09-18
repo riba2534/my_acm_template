@@ -16,7 +16,6 @@ const int maxn = 10005;
 const ll mod = 1e9 + 7;
 const int INF = 0x3f3f3f3f;
 const double eps = 1e-9;
-
 ll fast_mod(ll a, ll n, ll Mod)
 {
     ll ans = 1;
@@ -30,7 +29,6 @@ ll fast_mod(ll a, ll n, ll Mod)
     }
     return ans;
 }
-
 namespace linear_seq
 {
 ll res[maxn], base[maxn], num[maxn], md[maxn]; //数组大小约10000
