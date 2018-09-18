@@ -30,8 +30,6 @@ sg[x]      0  1  0  1  2  3  2  0  1....
 
 参考链接:[SG函数和SG定理【详解】](http://www.cnblogs.com/ECJTUACM-873284962/p/6921829.html)
 
-### 模板
-
 打表:
 
 ```cpp
@@ -50,17 +48,13 @@ void get_sg(int n)
     {
         mem(vis, 0);
         for (int j = 1; f[j] <= i && j <= ps; j++)
-        {
             vis[sg[i - f[j]]] = 1;
-        }
         for (int j = 0;; j++)
-        {
             if (!vis[j])
             {
                 sg[i] = j;
                 break;
             }
-        }
     }
 }
 ```
@@ -136,7 +130,6 @@ void init()
 }
 int main()
 {
-    //freopen("in.txt", "r", stdin);
     init();
     int x;
     while (~scanf("%d", &x))
@@ -148,7 +141,6 @@ int main()
     }
     return 0;
 }
-//dfs
 const int N = 1e3 + 10;
 int f[N], sg[N], n;
 int sg_dfs(int x)
@@ -178,7 +170,6 @@ void init()
 }
 int main()
 {
-    //freopen("in.txt", "r", stdin);
     init();
     int x;
     while (~scanf("%d", &x))
