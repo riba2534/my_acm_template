@@ -1,4 +1,16 @@
 {
-"title": "riba2534-ACM-Template",
-"plugins": ["katex"]
+    "title": "riba2534-ACM-Template",
+    "plugins": [
+        "katex",
+        "prism",
+        "prism-themes",
+        "-highlight"
+    ],
+    "pluginsConfig": {
+        "prism": {
+            "css": [
+                "prism-themes/themes/prism-vs.css"
+            ]
+        }
+    }
 }
