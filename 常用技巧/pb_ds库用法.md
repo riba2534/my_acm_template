@@ -175,5 +175,14 @@ int main() {
     }
     return 0;
 }
+另一种用vector的写法写法:
+vector <int>a;
+switch (op){
+case(1):a.insert(upper_bound(a.begin(),a.end(),x),x);break;
+case(2):a.erase(lower_bound(a.begin(),a.end(),x));break;
+case(3): cout<<lower_bound(a.begin(),a.end(),x)-a.begin()+1<<endl;break;
+case(4): cout<<a[x-1]<<endl;break;
+case(5): cout<<*--lower_bound(a.begin(),a.end(),x)<<endl;break;
+case(6): cout<<*upper_bound(a.begin(),a.end(),x)<<endl;break;}
 ```
 
