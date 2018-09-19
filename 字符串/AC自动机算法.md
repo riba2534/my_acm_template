@@ -375,4 +375,163 @@ int main()
 }
 
 ```
+[L. Poor God Water(ACM-ICPC 2018 焦作赛区网络预赛,ac自动机+矩阵快速幂)](https://blog.csdn.net/riba2534/article/details/82764769)
+
+求不包含给出的串的方案数
+
+我们可以想到[POJ2778 DNA Sequence(AC自动机+矩阵快速幂)](https://blog.csdn.net/riba2534/article/details/78452202)这个题,要求长度为n的序列中，不包含给的序列的方案数。我们用ac自动机+矩阵快速幂可以解决，那么思路就一样了，先把病毒串插入字典树，然后矩阵快速幂，记得加稀疏矩阵优化
+
+```cpp
+const ll N = 19;
+const ll mod = 1e9 + 7;
+struct Matrix
+{
+    ll mat[N][N], n;
+    Matrix() {}
+    Matrix(ll _n)
+    {
+        n = _n;
+        mem(mat, 0);
+    }
+    Matrix operator*(const Matrix &b) const
+    {
+        Matrix ret = Matrix(n);
+        for (ll i = 0; i < n; i++)
+            for (ll j = 0; j < n; j++)
+                if (mat[i][j])
+                    for (ll k = 0; k < n; k++)
+                        ret.mat[i][k] = ret.mat[i][k] + mat[i][j] * b.mat[j][k] % mod;
+        for (ll i = 0; i < n; i++)
+            for (ll j = 0; j < n; j++)
+                ret.mat[i][j] %= mod;
+        return ret;
+    }
+};
+Matrix mat_pow(Matrix a, ll n)
+{
+    Matrix ret = Matrix(a.n);
+    for (ll i = 0; i < ret.n; i++)
+        ret.mat[i][i] = 1;
+    Matrix tmp = a;
+    while (n)
+    {
+        if (n & 1)
+            ret = ret * tmp;
+        tmp = tmp * tmp;
+        n >>= 1;
+    }
+    return ret;
+}
+struct dicTree
+{
+    ll next[N][4], fail[N];
+    bool end[N];
+    ll root, sz;
+    ll newnode()
+    {
+        for (ll i = 0; i < 3; i++)
+            next[sz][i] = -1;
+        end[sz++] = 0;
+        return sz - 1;
+    }
+    void init()
+    {
+        sz = 0;
+        root = newnode();
+    }
+    ll getch(char ch)
+    {
+        if (ch == '1')
+            return 0;
+        if (ch == '2')
+            return 1;
+        if (ch == '3')
+            return 2;
+    }
+    void insert(string s)
+    {
+        ll len = s.size();
+        ll now = root;
+        for (ll i = 0; i < len; i++)
+        {
+            ll to = getch(s[i]);
+            if (next[now][to] == -1)
+                next[now][to] = newnode();
+            now = next[now][to];
+        }
+        end[now] = true;
+    }
+    void build()
+    {
+        queue<ll> q;
+        fail[root] = root;
+        for (ll i = 0; i < 3; i++)
+        {
+            if (next[root][i] == -1)
+                next[root][i] = root;
+            else
+            {
+                fail[next[root][i]] = root;
+                q.push(next[root][i]);
+            }
+        }
+        while (!q.empty())
+        {
+            ll now = q.front();
+            q.pop();
+            if (end[fail[now]] == true)
+                end[now] = true;
+            for (ll i = 0; i < 3; i++)
+            {
+                if (next[now][i] == -1)
+                    next[now][i] = next[fail[now]][i];
+                else
+                {
+                    fail[next[now][i]] = next[fail[now]][i];
+                    q.push(next[now][i]);
+                }
+            }
+        }
+    }
+    Matrix get_mat()
+    {
+        Matrix res = Matrix(sz);
+        for (ll i = 0; i < sz; i++)
+            for (ll j = 0; j < 3; j++)
+                if (end[next[i][j]] == false && end[i] == false)
+                    res.mat[i][next[i][j]]++;
+        return res;
+    }
+};
+dicTree ac;
+int main()
+{
+    ll t, m;
+    ac.init();
+    string s[10];
+    s[1] = "111";
+    s[2] = "222";
+    s[3] = "333";
+    s[6] = "123";
+    s[7] = "321";
+    s[4] = "212";
+    s[5] = "232";
+    for (ll i = 1; i <= 7; i++)
+        ac.insert(s[i]);
+    ac.build();
+    Matrix a = ac.get_mat();
+    scanf("%lld", &t);
+    while (t--)
+    {
+        scanf("%lld", &m);
+        Matrix b = a;
+        b = mat_pow(b, m);
+        ll ans = 0;
+        for (ll i = 0; i < ac.sz; i++)
+            ans = ans + b.mat[0][i];
+        printf("%lld\n", ans % mod);
+    }
+    return 0;
+}
+```
 

@@ -140,3 +140,40 @@ cout << t1.order_of_key(2) << endl;
 ```cpp
 auto it=t.begin();it--;//此时的it==t.end();t.end()不是最后一位，是最后一位的下一位
 ```
+
+例子:[P3369 【模板】普通平衡树](https://www.luogu.org/problemnew/show/P3369)
+
+您需要写一种数据结构（可参考题目标题），来维护一些数，其中需要提供以下操作：
+
+1. 插入xx数
+2. 删除xx数(若有多个相同的数，因只删除一个)
+3. 查询xx数的排名(排名定义为比当前数小的数的个数+1+1。若有多个相同的数，因输出最小的排名)
+4. 查询排名为xx的数
+5. 求xx的前驱(前驱定义为小于xx，且最大的数)
+6. 求xx的后继(后继定义为大于xx，且最小的数)
+
+```cpp
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+#include<bits/stdc++.h>
+using namespace std;
+using namespace __gnu_pbds;
+typedef long long ll;
+typedef __gnu_pbds::tree<ll, null_type, less<ll>, rb_tree_tag, tree_order_statistics_node_update> RBT;
+RBT rbt;
+ll T, op, x;
+int main() {
+    scanf("%lld", &T);
+    while(T--) {
+        scanf("%lld%lld", &op, &x);
+        if(op == 1) rbt.insert((x << 20) + T + 1);
+        else if(op == 2) rbt.erase(rbt.lower_bound(x << 20));
+        else if(op == 3) printf("%lld\n", rbt.order_of_key(x << 20) + 1);
+        else if(op == 4) printf("%lld\n", *rbt.find_by_order(x - 1) >> 20);
+        else if(op == 5) printf("%lld\n", *(--rbt.lower_bound(x << 20)) >> 20);
+        else if(op == 6) printf("%lld\n", *rbt.upper_bound((x + 1) << 20) >> 20);
+    }
+    return 0;
+}
+```
+
