@@ -1,8 +1,8 @@
-# RMQ算法/ST表
+### RMQ算法/ST表
 
 关于RMQ介绍：[RMQ (Range Minimum/Maximum Query)算法](http://blog.csdn.net/riba2534/article/details/70825916)
 
-RMQ用于先预处理一下，一段数列，然后可以很快的求出区间最大最小值,他在$O(nlog(n))$的时间预处理，在$$O(1)$$的时间查询.预处理：
+预处理：
 
 ```cpp
 void RMQ(int num) //预处理->O(nlogn)  
@@ -30,8 +30,7 @@ int minnum=min(minn[a][k],minn[b-(1<<k)+1][k]);
 对于每次询问，输出第m号士兵到第n号士兵之间所有士兵杀敌数的最大值与最小值的差。
 
 ```cpp
-int maxx[N][20];
-int minn[N][20];
+int maxx[N][20];int minn[N][20];
 void RMQ(int n)
 {
     for(int j=1; j<20; j++)
@@ -48,8 +47,7 @@ int main()
     scanf("%d%d",&n,&m);
     for(int i=1; i<=n; i++)
     {
-        scanf("%d",&x);
-        minn[i][0]=maxx[i][0]=x;
+        scanf("%d",&x);minn[i][0]=maxx[i][0]=x;
     }
     RMQ(n);
     while(m--)
