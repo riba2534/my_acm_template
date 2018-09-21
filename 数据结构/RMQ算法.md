@@ -2,9 +2,7 @@
 
 关于RMQ介绍：[RMQ (Range Minimum/Maximum Query)算法](http://blog.csdn.net/riba2534/article/details/70825916)
 
-RMQ用于先预处理一下，一段数列，然后可以很快的求出区间最大最小值,他在$O(nlog(n))$的时间预处理，在$$O(1)$$的时间查询.
-
-首先数预处理：
+RMQ用于先预处理一下，一段数列，然后可以很快的求出区间最大最小值,他在$O(nlog(n))$的时间预处理，在$$O(1)$$的时间查询.预处理：
 
 ```cpp
 void RMQ(int num) //预处理->O(nlogn)  
@@ -64,6 +62,5 @@ int main()
     }
     return 0;
 }
-
 ```
 

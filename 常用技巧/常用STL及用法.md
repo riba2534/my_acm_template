@@ -1,8 +1,6 @@
-# 常用STL及用法
+### 常用STL及用法
 
-以下整理一下常用的`STL`的常用用法.
-
-## 哈希容器
+#### 哈希容器
 
 ```cpp
 //当容器不需要排序时可以通过哈希容器来获取更高的性能
@@ -14,48 +12,34 @@ unordered_set<int>s1;
 unordered_multiset<int>s2;
 ```
 
- ## STL中的二分查找算法
+#### STL中的二分查找算法
 
 -   binary_search：查找某个元素是否出现。
 -   lower_bound：查找第一个大于或等于某个元素的位置。
 -   upper_bound：查找第一个大于某个元素的位置。
 -   equal_range：查找某个元素出现的起止位置。注意，终止位置为最后一次出现的位置加一。
 
-1.  `binary_search`试图在已排序的[first, last)中寻找元素value。如果[first, last)内有等价于value的元素，它会返回true，否则返回false，它不返回查找位置。
+1. `binary_search`试图在已排序的[first, last)中寻找元素value。如果[first, last)内有等价于value的元素，它会返回true，否则返回false，它不返回查找位置。
 
-2.  `lower_bound`它试图在已排序的[first,last)中寻找元素value。如果[first, last)具有等价于value的元素，lower_bound返回一个iterator指向其中第一个元素。如果没有这样的元素存在，它便返回假设这样的元素存在的话，会出现的位置。即指向第一个不小于value的元素。如果value大于[first, last)的任何一个元素，则返回last。
+2. `lower_bound`它试图在已排序的[first,last)中寻找元素value。如果[first, last)具有等价于value的元素，lower_bound返回一个iterator指向其中第一个元素。如果没有这样的元素存在，它便返回假设这样的元素存在的话，会出现的位置。即指向第一个不小于value的元素。如果value大于[first, last)的任何一个元素，则返回last。
 
-    >   STL 中的 lower_bound()，
-    >   函数lower_bound()在first和last中的前闭后开区间进行二分查找，返回大于或等于val的第一个元素位置。如果所有元素都小于val，则返回last的位置
-    >   举例如下：
-    >   一个数组number序列为：4,10,11,30,69,70,96,100.设要插入数字3,9,111.pos为要插入的位置的下标
-    >   则
-    >   pos = lower_bound( number, number + 8, 3) - number，pos = 0.即number数组的下标为0的位置。
-    >   pos = lower_bound( number, number + 8, 9) - number， pos = 1，即number数组的下标为1的位置（即10所在的位置）。
-    >   pos = lower_bound( number, number + 8, 111) - number， pos = 8，即number数组的下标为8的位置（但下标上限为7，所以返回最后一个元素的下一个元素）。
-    >   所以，要记住：函数lower_bound()在first和last中的前闭后开区间进行二分查找，返回大于或等于val的第一个元素位置。如果所有元素都小于val，则返回last的位置，且last的位置是越界的！！~
+   ```cpp
+   int main()  
+   {  
+       int point[10] = {1,3,7,7,9};  
+       int tmp = upper_bound(point, point + 5, 7)- point;//按从小到大，7最多能插入数组point的哪个位置  
+       printf("%d\n",tmp);  
+       tmp = lower_bound(point, point + 5, 7) - point;////按从小到大，7最少能插入数组point的哪个位置  
+       printf("%d\n",tmp);  
+       return 0;  
+   }  
+   ```
 
-    例子:
+3. `upper_bound`它试图在已排序的[first,last)中寻找value，返回可安插value的最后一个合适的位置。如果value存在，lower_bound 返回的是指向该元素的iterator。相较之下upper_bound并不这么做，它返回value可被安插的最后一个合适位置。如果value存在，那么它返回的iterator将指向value的下一个位置，而非value自身。
 
-    ```cpp
-    int main()  
-    {  
-        int point[10] = {1,3,7,7,9};  
-        int tmp = upper_bound(point, point + 5, 7)- point;//按从小到大，7最多能插入数组point的哪个位置  
-        printf("%d\n",tmp);  
-        tmp = lower_bound(point, point + 5, 7) - point;////按从小到大，7最少能插入数组point的哪个位置  
-        printf("%d\n",tmp);  
-        return 0;  
-    }  
-    ```
+4. `equal_range`的返回值本质上结合了lower_bound和upper_bound两者的返回值。其返回值是一对iterator i 和 j ， 其中i是value可安插的第一个位置，j则是value可安插的最后一个位置。可以推演出：[i，j)中的每个元素都等价于value，而且[i, j)是[first, last)之中符合上述性质的一个最大子区间。  算法lower_bound返回该range的第一个iterator， 算法upper_bound返回该range的past-the-end iterator，算法equal_range则是以pair的形式将两者都返回。
 
-3.  `upper_bound`它试图在已排序的[first,last)中寻找value，返回可安插value的最后一个合适的位置。如果value存在，lower_bound 返回的是指向该元素的iterator。相较之下upper_bound并不这么做，它返回value可被安插的最后一个合适位置。如果value存在，那么它返回的iterator将指向value的下一个位置，而非value自身。
-
-4.  `equal_range`的返回值本质上结合了lower_bound和upper_bound两者的返回值。其返回值是一对iterator i 和 j ， 其中i是value可安插的第一个位置，j则是value可安插的最后一个位置。可以推演出：[i，j)中的每个元素都等价于value，而且[i, j)是[first, last)之中符合上述性质的一个最大子区间。  算法lower_bound返回该range的第一个iterator， 算法upper_bound返回该range的past-the-end iterator，算法equal_range则是以pair的形式将两者都返回。
-
----
-
-## unique去重
+#### unique去重
 
 ```cpp
 int m=unique(X,X+num)-X;
@@ -63,7 +47,7 @@ int m=unique(X,X+num)-X;
 
 上面的函数可以对一个数组进行去重，前提是数组已经有序，去重后返回最后一个元素的位置，其实并没有去，只是把重复的放在了后面
 
-## String类的一些用法
+#### String类的一些用法
 
 1.  `replace`的用法
 
