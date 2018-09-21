@@ -1,7 +1,5 @@
 # 离线Tarjan算法
 
-## 离线Tarjan算法
-
 讲解可以看这个文章:[最近公共祖先（LCA）算法实现过程 【Tarjan离线+倍增在线+RMQ】](http://blog.csdn.net/my_sunshine26/article/details/72717112)，下面是我的模板:
 
 ```cpp

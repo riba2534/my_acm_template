@@ -14,8 +14,6 @@ KMP的精髓在于，对于每次失配之后，我都不会从头重新开始�
 
 其中最主要的，是对**next**数组的使用。
 
-
-
 ## next数组
 
 定义:`next[i]`等于`P[0]...P[i - 1]`最长的相同真前后缀的长度.
@@ -143,21 +141,6 @@ int main()
 [HDU2087 剪花布条(暴力+KMP)](http://blog.csdn.net/riba2534/article/details/72630243)
 
 ```cpp
-#include <cstdio>
-#include <cstring>
-#include <cctype>
-#include <stdlib.h>
-#include <string>
-#include <map>
-#include <iostream>
-#include <set>
-#include <stack>
-#include <cmath>
-#include <queue>
-#include <vector>
-#include <algorithm>
-using namespace std;
-#define mem(a,b) memset(a,b,sizeof(a))
 typedef long long ll;
 const int N=1e6+10;
 int nxt[N];

@@ -1,6 +1,7 @@
 # 最大流-Dinic算法
 
-### Dinic算法
+Dinic算法
+
 比较快的算法，适用于稀疏图，算案发复杂度$$O(V^2*E)$$
 
 可以AC：[P3376 【模板】网络最大流](https://www.luogu.org/problemnew/show/3376)
