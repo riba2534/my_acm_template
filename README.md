@@ -2,15 +2,15 @@
 
 这是我的acm模板，以后会慢慢完善:)
 
-欢迎fork.
+github仓库地址:`https://github.com/riba2534/my_acm_template`
 
-gitbook地址为:`https://git.gitbook.com/riba2534/riba2534_acm_template.git`
-
-github仓库地址:`https://github.com/riba2534/my_acm_template.git`
+例题代码大部分来源于我的博客:`https://blog.csdn.net/riba2534`
 
 目录请点击这里:[SUMMARY](SUMMARY.md)
 
 有问题请联系qq:`735632581`
 
 0.0
+
+By:riba2534
 
