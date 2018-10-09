@@ -4,6 +4,8 @@
 
 如：1 9 10 5 11 2 13的最长单调递增子序列是1 9 10 11 13，长度为5。
 
+如果要求非递减则是:`upper_bound`
+
 [NYOJ214 单调递增子序列(二)(LIS)](http://blog.csdn.net/riba2534/article/details/70239348)
 
 $$O(nlogn)$$版:
