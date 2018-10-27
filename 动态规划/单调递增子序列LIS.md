@@ -131,3 +131,65 @@ int main()
 */
 ```
 
+$nlog(n)$的写法中还有用树状数组实现的LIS求法
+
+树状数组维护已经插入的元素中的最大值。
+有两个函数:
+1. `update(int x, int val)`:代表给把x这个位置的数变成val
+2. `qmax(int x)`:查询已经插入的数中小于`x`的最大值
+
+具体的做法是:
+
+1. `f[i]`:表示以a[i]结尾的LIS长度
+
+对原序列进行离散化之后，对于每一个数，先查出**小于这个数结尾的**的LIS的最大值，那么`f[i]= f[i] = qmax(a[i]) + 1;`
+然后再把以`a[i]`结尾的LIS的最大值`f[i]`插入到树状数组中。利用树状数组维护这一过程
+以下代码ac nyoj214
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+#define mem(a, b) memset(a, b, sizeof(a))
+const int N = 1e5 + 10;
+int a[N], b[N], c[N], n, len, f[N];
+int lowbit(int x)
+{
+    return x & -x;
+}
+void update(int x, int val)
+{
+    for (int i = x; i <= n; i += lowbit(i))
+        c[i] = max(c[i], val);
+}
+int qmax(int x)
+{
+    int ans = 0;
+    for (int i = x; i; i -= lowbit(i))
+        ans = max(ans, c[i]);
+    return ans;
+}
+int main()
+{
+    //freopen("in.txt", "r", stdin);
+    while (~scanf("%d", &n))
+    {
+        for (int i = 1; i <= n; i++)
+            scanf("%d", &a[i]), b[i] = a[i];
+        sort(b + 1, b + n + 1);
+        len = unique(b + 1, b + n + 1) - b - 1;
+        mem(c, 0);
+        int ans = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            a[i] = lower_bound(b + 1, b + len + 1, a[i]) - b;
+            f[i] = qmax(a[i]) + 1;
+            update(a[i], f[i]);
+            ans = max(ans, f[i]);
+        }
+        printf("%d\n", ans);
+        //for (int i = 1; i <= n; i++)
+        //    printf("%d\n", f[i]);
+    }
+    return 0;
+}
+```
