@@ -12,7 +12,7 @@ github仓库地址:`https://github.com/riba2534/my_acm_template`
 
 0.0
 
-By:riba2534
+By:riba2534.
 
 ![](touxiang.jpg)
 
