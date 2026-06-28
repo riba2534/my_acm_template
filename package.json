@@ -6,12 +6,17 @@
   "type": "module",
   "scripts": {
     "prepare:content": "node site/scripts/build.mjs",
-    "dev": "npm run prepare:content && vitepress dev site",
-    "build": "npm run prepare:content && vitepress build site",
+    "dev": "node site/scripts/build.mjs && vitepress dev site",
+    "build": "node site/scripts/build.mjs && vitepress build site",
     "preview": "vitepress preview site"
   },
   "devDependencies": {
     "markdown-it-mathjax3": "^4.3.2",
     "vitepress": "^1.6.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
