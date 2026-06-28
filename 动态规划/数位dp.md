@@ -4,7 +4,7 @@
 
 题目求区间`[L,R]`内不包含`4`和`62`的数的个数。
 
-- 不包含`4`用状态`num1`来表示,1表示当前位包含4,0表示不包含
+- 不包含`4`用状态`num1`来表示,1表示到目前为止已出现过4,0表示尚未出现
 - 不包含`62`用状态`num2`来表示，`num2`有三个取值:
   - 0代表：`x x`(都没有出现过)
   - 1代表:`6 x`(前一位是6)
@@ -38,7 +38,7 @@ int dfs(int pos, int num1, int num2, int limit)
         return num2 != 2 && num1 != 1;//是否满足条件num2的状态不为2，num1不为1
     if (!limit && ~dp[pos][num1][num2]) return dp[pos][num1][num2];
     int up = limit ? a[pos] : 9, ans = 0;//限制是否存在
-    for (int i = 0; i <= up; i++)//枚举当前为可能的数
+    for (int i = 0; i <= up; i++)//枚举当前位可能的数
         ans += dfs(pos - 1, num1 || i == 4, pd(num2, i), limit && (i == up));
     return limit ? ans : dp[pos][num1][num2] = ans;
 }
@@ -74,7 +74,7 @@ int main()
 
 模板修改:
 
-num代表当前这一位，为0数字出现的次数.
+num代表当前枚举到的位置上，非0数字出现的次数.
 
 所以当pos枚举完之后，直接判断`num`是否`<=3`即可.
 

@@ -8,7 +8,7 @@
 
 [NYOJ214 单调递增子序列(二)(LIS)](http://blog.csdn.net/riba2534/article/details/70239348)
 
-$$O(nlogn)$$版:
+$O(n \log n)$版:
 
 ```cpp
 int a[N];
@@ -36,7 +36,7 @@ int main()
 
 ```
 
-$$O(n^2)$$版：
+$O(n^2)$版：
 
 ```cpp
 #include<stdio.h>
@@ -71,7 +71,7 @@ int main()
 
 
 
-$$nlog(n)$$记录路径:
+$O(n \log n)$记录路径:
 
 ```cpp
 const int N=5000;
@@ -131,19 +131,19 @@ int main()
 */
 ```
 
-$nlog(n)$的写法中还有用树状数组实现的LIS求法
+$O(n \log n)$的写法中还有用树状数组实现的LIS求法
 
 树状数组维护已经插入的元素中的最大值。
 有两个函数:
-1. `update(int x, int val)`:代表给把x这个位置的数变成val
-2. `qmax(int x)`:查询已经插入的数中小于`x`的最大值
+1. `update(int x, int val)`:代表把 x 这个位置的数更新为 val
+2. `qmax(int x)`:查询离散化值在 [1,x] 内（即小于等于 x）的已插入元素中的最大 LIS 值
 
 具体的做法是:
 
 1. `f[i]`:表示以a[i]结尾的LIS长度
 
-对原序列进行离散化之后，对于每一个数，先查出**小于这个数结尾的**的LIS的最大值，那么`f[i]= f[i] = qmax(a[i]) + 1;`
-然后再把以`a[i]`结尾的LIS的最大值`f[i]`插入到树状数组中。利用树状数组维护这一过程
+对原序列进行离散化之后，对于每一个数，先查出**以小于这个数的元素结尾的**LIS的最大值，那么`f[i] = qmax(a[i] - 1) + 1;`
+然后再把以`a[i]`结尾的LIS的最大值`f[i]`插入到树状数组中。利用树状数组维护这一过程。
 以下代码ac nyoj214
 
 ```cpp
@@ -182,7 +182,7 @@ int main()
         for (int i = 1; i <= n; i++)
         {
             a[i] = lower_bound(b + 1, b + len + 1, a[i]) - b;
-            f[i] = qmax(a[i]) + 1;
+            f[i] = qmax(a[i] - 1) + 1;
             update(a[i], f[i]);
             ans = max(ans, f[i]);
         }

@@ -14,7 +14,7 @@
 
 模板题:
 
-[ P3805 【模板】manacher算法](https://www.luogu.org/problemnew/show/P3805)
+[ P3805 【模板】Manacher算法](https://www.luogu.org/problemnew/show/P3805)
 
 给出一个只由小写英文字符a,b,c...y,z组成的字符串S,求S中最长回文串的长度.
 

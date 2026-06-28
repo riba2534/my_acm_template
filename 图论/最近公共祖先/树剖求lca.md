@@ -1,6 +1,6 @@
-# 树剖求lca
+# 树剖求LCA
 
-理论复杂度为:$$O(2n+mlogn)$$,常数比倍增小
+理论复杂度为 $O(2n+m\log n)$,常数比倍增小
 
 ```cpp
 typedef long long ll;

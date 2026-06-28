@@ -1,12 +1,15 @@
-# floyd算法
+# Floyd算法
 
-求多源最短路径的一种算法，缺点是时间复杂度太大，对于小数据，可以求出任意一点到任意一点的最短路径.
+求多源最短路径的一种算法，缺点是时间复杂度较大（时间复杂度 $O(n^3)$，空间复杂度 $O(n^2)$），对于小数据，可以求出任意一点到任意一点的最短路径。
 
-用了三重for循环.
+用了三重for循环。
 
 [最短路径·二：Floyd算法](https://hihocoder.com/problemset/problem/1089)
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+const int inf=0x3f3f3f3f;
 const int N=1e2+10;
 const int M=1e6+10;
 int n,m;

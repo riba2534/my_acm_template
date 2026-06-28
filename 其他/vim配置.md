@@ -1,12 +1,12 @@
 # vim配置
 
-编辑`~/.vimrc`把如下代码贴进去.
+编辑`~/.vimrc`把如下代码贴进去。
 
-```bash
+```vim
 filetype plugin indent on
 set nu
 set hlsearch 
-set syntax=on
+syntax on
 set tabstop=4
 set shiftwidth=4
 set smarttab
@@ -28,7 +28,7 @@ function Close(char)
         return a:char
     endif
 endfunction
-map <C-A> ggV
+map <C-A> ggVG
 map <F5> :call Run()<CR>
 func! Run()
     exec "w"

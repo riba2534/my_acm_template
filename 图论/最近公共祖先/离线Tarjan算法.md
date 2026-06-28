@@ -32,7 +32,7 @@ int find(int x)
 {
     return x==pre[x]?x:pre[x]=find(pre[x]);
 }
-int lca(int u,int fa)
+void lca(int u,int fa)
 {
     for(int i=first[u]; ~i; i=e[i].next)
     {
@@ -89,7 +89,7 @@ int main()
 
 我们可以采用离线Tarjan算法。
 
-用dis[i]表示从根节点到当前节点的距离，然后求每组询问 的最近公共祖先，比如询问i,j两点，那么计算出：
+用dis[i]表示从根节点到当前节点的距离，然后求每组询问的最近公共祖先，比如询问i,j两点，那么计算出：
 
 dis[i]+dis[j]-2*dis[他们的公共祖先]，就是要求的距离了
 

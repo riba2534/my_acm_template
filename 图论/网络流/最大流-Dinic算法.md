@@ -2,9 +2,9 @@
 
 Dinic算法
 
-比较快的算法，适用于稀疏图，算案发复杂度$$O(V^2*E)$$
+通用且实际运行较快的最大流算法，时间复杂度 $O(V^2 E)$；在单位容量图 / 二分图匹配上有更优上界 $O(E\sqrt{V})$。
 
-可以AC：[P3376 【模板】网络最大流](https://www.luogu.org/problemnew/show/3376)
+可以AC：[P3376 【模板】网络最大流](https://www.luogu.com.cn/problem/P3376)
 ```cpp
 const int N=10000+50;
 const int M=200000+50;

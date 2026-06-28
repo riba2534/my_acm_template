@@ -23,7 +23,7 @@ print(a)
 
 ## JAVA
 
-在Java中有两个类BigInteger和BigDecimal分别表示大整数类和大浮点数类，至于两个类的对象能表示最大范围不清楚，理论上能够表示无线大的数，只要计算机内存足够大。 
+在Java中有两个类BigInteger和BigDecimal分别表示大整数类和大浮点数类，至于两个类的对象能表示最大范围不清楚，理论上能够表示无限大的数，只要计算机内存足够大。 
 这两个类都在`java.math.*`包中，因此每次必须在开头处引用该包。
 
 java大数开根号:
@@ -59,10 +59,10 @@ public static BigInteger getSqrt(String s) {
 ```
 
 Ⅰ基本函数： 
-1. `valueOf(parament);` 将参数转换为制定的类型 
+1. `valueOf(parament);` 将参数转换为指定的类型 
 2. `add();` 大整数相加 
-    BigInteger a=new BigInteger(“23”); 
-    BigInteger b=new BigInteger(“34”); 
+    BigInteger a=new BigInteger("23"); 
+    BigInteger b=new BigInteger("34"); 
     a. add(b);
 3. subtract(); 相减 
 4. multiply(); 相乘 
@@ -74,7 +74,7 @@ public static BigInteger getSqrt(String s) {
 10. negate(); 取反数 
 11. mod(); a.mod(b)=a%b=a.remainder(b); 
 12. max(); min(); 
-13. punlic int comareTo(); 
+13. public int compareTo(); 
 14. boolean equals(); 是否相等 
 15. BigInteger构造函数： 
 一般用到以下两种： 

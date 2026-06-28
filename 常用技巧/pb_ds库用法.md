@@ -16,23 +16,21 @@ using namespace __gnu_pbds;
 
 ```cpp
 cc_hash_table<string,int>mp1;//拉链法
-gp_hash_table<string,int>mp2;//查探法(快一些)
+gp_hash_table<string,int>mp2;//探查法(快一些)
 ```
 
 说明：
 
-在不允许使用**C++11**的时候，pb_ds库中的两种hash函数比map的效率大大提高 ，可以代替map作为一个哈希工具,使用方法和**map**完全一样,一般来说查探法的效率更高
+在不允许使用**C++11**的时候，pb_ds库中的两种hash函数比map的效率大大提高 ，可以代替map作为一个哈希工具,使用方法和**map**完全一样,一般来说探查法的效率更高
 
 ### 堆
 
 需要的头文件:
 
-用法和普通的优先队列一样
-
 ```cpp
 #include<ext/pb_ds/priority_queue.hpp>
 using namespace __gnu_pbds;
-__gnu_pbds::priority_queue<int>q;//因为放置和std重复，故需要带上命名空间
+__gnu_pbds::priority_queue<int>q;//因为防止和std重复，故需要带上命名空间
 __gnu_pbds::priority_queue<int,greater<int>,pairing_heap_tag> pq;//最快
 __gnu_pbds::priority_queue<int,greater<int>,binary_heap_tag> pq;
 __gnu_pbds::priority_queue<int,greater<int>,binomial_heap_tag> pq;
@@ -41,7 +39,9 @@ __gnu_pbds::priority_queue<int,greater<int>,thin_heap_tag> pq;
 __gnu_pbds::priority_queue<int,greater<int> > pq;
 ```
 
-`pb_ds`库的堆提供了五种tag，分别是`binary_heap_tag`，`binomal_heap_tag`，`pairing_heap_tag`，`thin_heap_tag`，`rc_binomal_heap_tag` 。 因为重名的原因一定要加上 `__gnu_pbds:: `
+用法和普通的优先队列一样。
+
+`pb_ds`库的堆提供了五种tag，分别是`binary_heap_tag`，`binomial_heap_tag`，`pairing_heap_tag`，`thin_heap_tag`，`rc_binomial_heap_tag` 。 因为重名的原因一定要加上 `__gnu_pbds:: `
 
 常用操作:
 
@@ -80,7 +80,7 @@ using namespace __gnu_pbds;
 ```cpp
 tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> t;
 /*
-定义一颗红黑树
+定义一棵红黑树
 int 关键字类型
 null_type无映射(低版本g++为null_mapped_type)
 less<int>从小到大排序
@@ -88,15 +88,15 @@ rb_tree_tag 红黑树（splay_tree_tag）
 tree_order_statistics_node_update结点更新
 插入t.insert();
 删除t.erase();
-求k在树中是第几大:t.order_of_key();
-求树中的第k大:t.find_by_order();
-前驱:t.lower_bound();
+求 x 在树中比它小的元素个数(排名-1):t.order_of_key();
+求树中第 k+1 小的元素(参数k为0-based):t.find_by_order();
+前驱(<x的max): *(--t.lower_bound(x));  // lower_bound(x)本身返回的是 >=x 的最小元素
 后继t.upper_bound();
 a.join(b)b并入a 前提是两棵树的key的取值范围不相交
 a.split(v,b)key小于等于v的元素属于a，其余的属于b
 T.lower_bound(x)   >=x的min的迭代器
-T.upper_bound((x)  >x的min的迭代器
-T.find_by_order(k) 有k个数比它小的数
+T.upper_bound(x)  >x的min的迭代器
+T.find_by_order(k) 返回恰好有k个元素比它小的那个元素(即第k+1小)
 */
 ```
 > 第一个参数代表key的类型 
@@ -135,7 +135,7 @@ cout << t1.order_of_key(2) << endl;
 ```
 
 > 4、合并两个类型相同的tree，t1.join(t2)。t2的内容会全部加入到t1，t2被清空。要保证t1的值全部小于t2或者全部大于t2，否则会抛出异常。 
-> 5、不支持多重值，如果需要多重值，可以再开一个unordered_map来记录值出现的次数。将x<<32后加上出现的次数后插入tree。注意此时应该为long long类型。
+> 5、不支持多重值，如果需要多重值，可以再开一个unordered_map来记录值出现的次数。将x<<32后加上出现的次数后插入tree。注意此时应该为long long类型。（下方示例代码用的是 `<<20`，位移量只是不同实现选择，需保证低位足够容纳重复次数/唯一标识。）
 
 ```cpp
 auto it=t.begin();it--;//此时的it==t.end();t.end()不是最后一位，是最后一位的下一位
@@ -146,8 +146,8 @@ auto it=t.begin();it--;//此时的it==t.end();t.end()不是最后一位，是最
 您需要写一种数据结构（可参考题目标题），来维护一些数，其中需要提供以下操作：
 
 1. 插入xx数
-2. 删除xx数(若有多个相同的数，因只删除一个)
-3. 查询xx数的排名(排名定义为比当前数小的数的个数+1+1。若有多个相同的数，因输出最小的排名)
+2. 删除xx数(若有多个相同的数，请只删除一个)
+3. 查询xx数的排名(排名定义为比当前数小的数的个数+1。若有多个相同的数，请输出最小的排名)
 4. 查询排名为xx的数
 5. 求xx的前驱(前驱定义为小于xx，且最大的数)
 6. 求xx的后继(后继定义为大于xx，且最小的数)
@@ -166,7 +166,7 @@ int main() {
     scanf("%lld", &T);
     while(T--) {
         scanf("%lld%lld", &op, &x);
-        if(op == 1) rbt.insert((x << 20) + T + 1);
+        if(op == 1) rbt.insert((x << 20) + T + 1);//高20位存值,低20位用递减的T作唯一标识以支持重复值(要求操作数<2^20)
         else if(op == 2) rbt.erase(rbt.lower_bound(x << 20));
         else if(op == 3) printf("%lld\n", rbt.order_of_key(x << 20) + 1);
         else if(op == 4) printf("%lld\n", *rbt.find_by_order(x - 1) >> 20);
@@ -175,7 +175,7 @@ int main() {
     }
     return 0;
 }
-另一种用vector的写法写法:
+另一种用vector的写法:
 vector <int>a;
 switch (op){
 case(1):a.insert(upper_bound(a.begin(),a.end(),x),x);break;

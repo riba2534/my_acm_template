@@ -74,7 +74,7 @@ void get_next(string p)
 
 当原串S为`aaaa`,模式串为`aa`时算作出现了`3`次.
 
-终点是:`当j==plen`时，`j=nxt[j]`
+重点是:`当j==plen`时，`j=nxt[j]`
 
 [HihoCoder - 1015 -KMP算法](https://hihocoder.com/problemset/problem/1015)
 
@@ -136,7 +136,7 @@ int main()
 
 当原串S为`aaaa`,模式串为`aa`时算作出现了`2`次.
 
-终点是:`当j==plen`时，`j=nxt[j]`
+重点是:`当j==plen`时，`j=0`
 
 [HDU2087 剪花布条(暴力+KMP)](http://blog.csdn.net/riba2534/article/details/72630243)
 
@@ -278,7 +278,7 @@ int main()
 
 给了一个长度为n的字符串，然后让你找每一个前缀（从第二个字母开始）是否是循环的，如果是就把当前的位置和循环节的长度输出
 
-实际上就是 next 数组的使用,令`j=i−next[i]`,如果`i%j==0`就证明存在循环节，循环节的长度为`i/j`
+实际上就是 next 数组的使用,令`j=i-nxt[i]`,如果`i%j==0&&i/j>1`(循环次数需大于1)就证明存在循环节，循环节的长度为`i/j`
 
 ```cpp
 #include <bits/stdc++.h>

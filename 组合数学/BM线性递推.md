@@ -10,7 +10,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-typedef long long ll;
 typedef vector<int> VI;
 const int maxn = 10005;
 const ll mod = 1e9 + 7;
@@ -120,7 +119,7 @@ VI BM(VI s)
     }
     return C;
 }
-int gao(VI a, ll n)
+ll gao(VI a, ll n)
 {
     VI c = BM(a);
     c.erase(c.begin());
@@ -131,9 +130,9 @@ int gao(VI a, ll n)
 } // namespace linear_seq
 int main()
 {
-    //填数字的时候带上模数之后的
+    //填入的序列各项需为已对 mod 取模后的非负值
     ll t, n;
-    scanf("%d", &t);
+    scanf("%lld", &t);
     while (t--)
     {
         scanf("%lld", &n);
