@@ -20,7 +20,7 @@
 - **高精度运算** —— 大数的加减乘除
 - **其他** —— 计算几何、表达式求值、归并排序、模拟退火、二分查找、各种公式
 
-例题代码大多来源于作者的 [CSDN 博客](https://blog.csdn.net/riba2534)。也可在 [Releases](https://github.com/riba2534/my_acm_template/releases) 下载 PDF 版本。
+例题代码大多来源于作者的 [CSDN 博客](https://blog.csdn.net/riba2534)。
 
 ## 🛠️ 本地开发
 

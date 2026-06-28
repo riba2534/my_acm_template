@@ -6,7 +6,7 @@ hero:
   text: "算法竞赛代码与讲解合集"
   tagline: 一份持续打磨的 ACM/ICPC 模板 —— 数论 · 图论 · 数据结构 · 动态规划 · 字符串 · 计算几何
   image:
-    src: /touxiang.jpg
+    src: /avatar.png
     alt: riba2534
   actions:
     - theme: brand
@@ -50,5 +50,3 @@ features:
 本站由原 GitBook 仓库迁移至 VitePress，支持全文搜索、数学公式渲染与深浅色主题切换；并对全部文档做了一次系统性校订，修正了错别字、公式排版、算法命名与若干代码笔误。
 
 > 打 ACM 的时光可能是我大学最美好的时光，想念和队友并肩作战的日子，工作后再也没有这种感觉了，时光已逝，只有怀念。
-
-如对本模板有需要，也可前往 GitHub Releases 下载 PDF 版本：[riba2534-ACM-Template.pdf](https://github.com/riba2534/my_acm_template/releases/download/v1.0/riba2534-ACM-Template.pdf)。

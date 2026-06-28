@@ -26,7 +26,7 @@ export default defineConfig({
   },
 
   themeConfig: {
-    logo: '/touxiang.jpg',
+    logo: '/avatar.png',
     outline: { level: [2, 3], label: '本页目录' },
     sidebar,
 
