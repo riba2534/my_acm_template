@@ -1,0 +1,87 @@
+/* ===== 品牌色：取头像偏绿的竞赛清爽风 ===== */
+:root {
+  --vp-c-brand-1: #2f8a6f;
+  --vp-c-brand-2: #36a07f;
+  --vp-c-brand-3: #3c8772;
+  --vp-c-brand-soft: rgba(54, 160, 127, 0.14);
+
+  --vp-font-family-base: 'Noto Serif SC', -apple-system, BlinkMacSystemFont,
+    'PingFang SC', 'Microsoft YaHei', 'Segoe UI', Roboto, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas,
+    'Liberation Mono', Menlo, monospace;
+}
+
+.dark {
+  --vp-c-brand-1: #4fb497;
+  --vp-c-brand-2: #43a586;
+  --vp-c-brand-3: #3c8772;
+}
+
+/* ===== 首页 hero 头像圆形 ===== */
+.VPHero .image-bg {
+  opacity: 0.45;
+}
+.VPHero .VPImage {
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+  object-fit: cover;
+}
+
+/* ===== 正文中文排版 ===== */
+.vp-doc {
+  line-height: 1.8;
+}
+.vp-doc p,
+.vp-doc li {
+  letter-spacing: 0.01em;
+}
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  letter-spacing: 0.02em;
+}
+.vp-doc h2 {
+  margin-top: 2.2rem;
+  padding-top: 1.4rem;
+}
+
+/* ===== 代码块：竞赛模板代码量大，强调可读性 ===== */
+.vp-doc div[class*='language-'] {
+  border-radius: 8px;
+  font-size: 13.5px;
+}
+.vp-doc div[class*='language-'] code {
+  font-family: var(--vp-font-family-mono);
+  line-height: 1.65;
+}
+.vp-doc :not(pre) > code {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.86em;
+}
+
+/* 行号样式微调 */
+.vp-doc .line-numbers-mode .line-numbers-wrapper {
+  font-size: 13px;
+}
+
+/* ===== 数学公式横向滚动（长公式不溢出） ===== */
+.vp-doc mjx-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+.vp-doc mjx-container[display='true'] {
+  margin: 1em 0;
+  padding: 2px 0;
+}
+
+/* ===== 表格 ===== */
+.vp-doc table {
+  display: table;
+  width: 100%;
+}
+
+/* ===== 内容区适当加宽（代码多） ===== */
+.VPDoc.has-aside .content-container {
+  max-width: 980px;
+}

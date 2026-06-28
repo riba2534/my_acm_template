@@ -1,0 +1,15 @@
+{
+  "name": "riba2534-acm-template",
+  "version": "1.0.0",
+  "description": "riba2534 的 ACM/ICPC 算法竞赛模板文档站",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "markdown-it-mathjax3": "^4.3.2",
+    "vitepress": "^1.6.4"
+  }
+}

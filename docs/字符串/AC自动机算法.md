@@ -1,6 +1,6 @@
 # AC自动机算法
 
-转载自：<http://blog.csdn.net/niushuai666/article/details/7002823>
+转载自：[blog.csdn.net/niushuai666/article/details/7002823](https://blog.csdn.net/niushuai666/article/details/7002823)
 
 AC自动机简介： 
 
