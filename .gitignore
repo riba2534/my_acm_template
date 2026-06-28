@@ -2,8 +2,19 @@
 node_modules/
 
 # VitePress build output & cache
-docs/.vitepress/dist/
-docs/.vitepress/cache/
+site/.vitepress/dist/
+site/.vitepress/cache/
+
+# 由 site/scripts/build.mjs 从仓库根复制进 site/ 的内容副本（生成物）
+site/常用技巧/
+site/数论/
+site/高精度运算/
+site/组合数学/
+site/图论/
+site/字符串/
+site/数据结构/
+site/动态规划/
+site/其他/
 
 # OS / editor
 .DS_Store

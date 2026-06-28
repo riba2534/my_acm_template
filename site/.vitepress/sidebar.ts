@@ -1,4 +1,5 @@
-// 本文件由 SUMMARY 结构 + 各文档 H1 标题自动生成，保持原模板的分类与教学顺序。
+// 本文件由原 SUMMARY 结构 + 各文档 H1 标题生成，保持原模板的分类与教学顺序。
+// 链接路径对应 site/ 下由 scripts/build.mjs 复制进来的内容目录。
 export const sidebar = [
   { text: '常用技巧', collapsed: false, items: [
       { text: '输入输出加速', link: '/常用技巧/输入输出加速' },

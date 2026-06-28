@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "riba2534 的 ACM/ICPC 算法竞赛模板文档站",
   "license": "MIT",
+  "type": "module",
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "preview": "vitepress preview docs"
+    "prepare:content": "node site/scripts/build.mjs",
+    "dev": "npm run prepare:content && vitepress dev site",
+    "build": "npm run prepare:content && vitepress build site",
+    "preview": "vitepress preview site"
   },
   "devDependencies": {
     "markdown-it-mathjax3": "^4.3.2",

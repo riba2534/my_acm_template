@@ -79,7 +79,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/riba2534/my_acm_template/edit/master/docs/:path',
+      pattern: 'https://github.com/riba2534/my_acm_template/edit/master/:path',
       text: '在 GitHub 上编辑此页',
     },
 
